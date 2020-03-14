@@ -1,6 +1,7 @@
 package com.vanniktech.rxriddles
 
 import io.reactivex.Single
+import io.reactivex.functions.Consumer
 
 object Riddle30 {
   /**
@@ -9,6 +10,8 @@ object Riddle30 {
    * Use case: Add some logging.
    */
   fun solve(source: Single<Int>, function: () -> Unit): Single<Int> {
-    TODO()
+    return source.doOnSubscribe(Consumer {
+      function.invoke()
+    })
   }
 }
